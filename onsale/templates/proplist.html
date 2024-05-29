@@ -1,0 +1,61 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+
+<div class="section section-properties">
+    <div class="container">
+      <div class="row mb-5 align-items-center">
+        <div class="col-lg-6 text-center mx-auto">
+          <h2 class="font-weight-bold text-primary heading">
+            Featured Properties
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        {% for casa in ventas %}
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+          <div class="property-item mb-30">
+            {% if casa.foto %}            
+            <a href="prop/{{casa.pk}}" class="img">
+              <img src="{{casa.foto.url }}" alt="Image" class="img-fluid" style="width: 300px; height: 300px">  
+              {% endif %}
+            </a>
+
+            <div class="property-content">
+              <div class="price mb-2"><span>${{ casa.precio }}</span></div>
+              <div>
+                <span class="d-block mb-2 text-black-50"
+                  >Area Code: {{ casa.direccion }}</span
+                >
+                <span class="city d-block mb-3">Adress: {{ casa.lugar }}</span>
+
+                <div class="specs d-flex mb-4">
+                  <span class="d-block d-flex align-items-center me-3">
+                    <span class="icon-bed me-2"></span>
+                    <span class="caption">{{ casa.beds }} beds</span>
+                  </span>
+                  <span class="d-block d-flex align-items-center">
+                    <span class="icon-bath me-2"></span>
+                    <span class="caption"> {{ casa.baths }} baths</span>
+                  </span>
+                </div>
+
+                <a
+                  href="prop/{{casa.pk}}"
+                  class="btn btn-primary py-2 px-3"
+                  >See details</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- .item -->
+      </div>
+        {% endfor %}  
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+

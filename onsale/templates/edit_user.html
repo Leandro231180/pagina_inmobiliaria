@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+{% load static %}
+<h1>{{mensaje}}</h1>
+
+    <div class="container-sm">
+    <form  method="POST">
+    <div class="mb-3">
+    {% csrf_token %}
+    {{form.as_p}}
+   
+    {% comment %} <div class="mb-3">
+        <label for="username" class="form-label">UserName</label>
+        <input type="text" class="form-control" name="username" placeholder="User Name">        
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+    {% endcomment %}
+
+<button class="btn btn-success" type="submit"> UpDate Profile</button>
+<a class="btn btn-danger" href="/" role="button">Cancel</a>
+</div>
+</form>
+</div>
+
+{%endblock%}

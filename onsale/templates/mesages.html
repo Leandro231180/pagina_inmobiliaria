@@ -1,0 +1,32 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre </th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Mensaje</th>  
+      <th scope="col">Date</th>      
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in mensage %}
+    <tr>  
+      <th scope="row">{{b.id}}</th>
+      <td>{{ b.contact_nombre}}</td>
+      <td>{{ b.correo}}</td> 
+      <td>{{ b.mensaje}}</td>
+      <td>{{ b.create_date}}</td>  
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+{%endblock%}

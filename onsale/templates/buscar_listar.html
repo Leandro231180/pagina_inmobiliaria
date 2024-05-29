@@ -1,0 +1,38 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Adress </th>
+        <th scope="col">Area Code</th>
+        <th scope="col">precio</th>
+        <th scope="col">Photo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for casa in ventas %}
+      <tr>
+        <th scope="row">{{casa.id}}</th>
+        <td>{{ casa.lugar }}</td>
+            
+       
+        <td>{{ casa.direccion }}</td> 
+        <td>{{ casa.precio }}</td> 
+      
+        {% if casa.foto %}
+        
+        <td><img src="{{casa.foto.url }}" width=100 height=100></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+<br></br>
+
+{% for casa in onsale %}
+<tr>
+  <th scope="row">{{casa.id}}</th>
+  <td>{{ casa.calle }}</td>
+      
+ 
+  <td>{{ casa.direccion }}</td> 
+  <td>{{ casa.foto }}</td> 
+
+  {% if casa.foto2 %}
+  <td><img src="{{casa.foto2.url }}" width=300 height=300></td>
+  {% endif %}
+
+  {% if casa.foto3 %}
+  <td><img src="{{casa.foto3.url }}" width=300 height=300></td>
+  {% endif %}
+
+</tr>
+{% endfor %}
+
+{% for casa in onsale %}
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <div>
+            {% if casa.foto2 %}
+            <td><img src="{{casa.foto2.url }}" width=300 height=300></td>
+            {% endif %}  
+        </div>
+       
+      <h5 class="card-title">{{casa.id}}</h5>
+      <p class="card-text">{{ casa.calle }}</p>
+
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% for casa in onsale %}
+  <div class="card" style="width: 18rem;">
+    <h5 class="card-title">{{ casa.adress }} {{ casa.direccion }} </h5>
+    <div class="card-body">
+
+      
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  {%endblock%}

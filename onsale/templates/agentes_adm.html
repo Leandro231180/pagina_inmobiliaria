@@ -1,0 +1,167 @@
+{% extends 'padre.html' %}
+ {% load static %}
+{% block content %}
+
+
+{% comment %} <div class="section">
+    <div class="container">
+      <div class="row mb-5 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="font-weight-bold text-primary heading">
+            Popular Properties!!!
+          </h2>
+        </div>
+        <div class="col-lg-6 text-lg-end">
+          <p>
+            <a
+              href="allprop"
+              target="_blank"
+              class="btn btn-primary text-white py-3 px-4"
+              >View all properties</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="property-slider-wrap">
+            <div class="property-slider">
+               <!-- .item -->
+               {% for agent in agentes %}
+            <div class="item">
+              <div class="testimonial">
+               
+
+                {% if agent.pic %}
+                      <img src="{{agent.pic.url }}" alt="Image"  class="img-fluid rounded-circle w-25 mb-4"/>
+                      {% endif %}
+               
+               
+                <h3 class="h5 text-primary mb-4">{{agent.name}} {{agent.lastname}}</h3>
+                <blockquote>
+                  <p>
+                    {{agent.about}}
+                    <ul class="social list-unstyled list-inline dark-hover">
+                      <li class="list-inline-item">
+                        <a href="{{agent.twiter}}"><span class="icon-twitter"></span></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="{{agent.facebook}}"><span class="icon-facebook"></span></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="{{agent.linkedin}}"><span class="icon-linkedin"></span></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="{{agent.instagram}}"><span class="icon-instagram"></span></a>
+                      </li>
+                    </ul>
+
+                  </p>
+                </blockquote>
+                <p class="text-black-50">{{agent.about}}</p>
+                <p><a href="#"  class="btn btn-danger">Learn More</a><a href="#" class="btn btn-warning"> Learn More</a></p>
+                
+              </div>
+              
+            </div>
+            {% endfor %}
+              <!-- .item -->
+            </div>
+
+            <div
+              id="property-nav"
+              class="controls"
+              tabindex="0"
+              aria-label="Carousel Navigation"
+            >
+              <span
+                class="prev"
+                data-controls="prev"
+                aria-controls="property"
+                tabindex="-1"
+                >Prev</span
+              >
+              <span
+                class="next"
+                data-controls="next"
+                aria-controls="property"
+                tabindex="-1"
+                >Next</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> {% endcomment %}
+
+  <div class="section section-properties">
+    <div class="container">
+      <div class="row mb-5 align-items-center">
+        <div class="col-lg-6 text-center mx-auto">
+          <h2 class="font-weight-bold text-primary heading">
+            Our Agents
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        {% for agent in agentes %}
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+          <div class="property-item mb-30">
+            {% if agent.pic %}            
+            <a href="prop/{{agent.pk}}" class="img">
+              <img src="{{agent.pic.url}}" alt="Image" class="img-fluid" style="width: 480x; height: 320px">  
+              {% endif %}
+            </a>
+
+            <div class="h5 text-primary mb-4">
+              <div class="price mb-2"><span>{{agent.name}} {{agent.lastname}}</span></div>
+              <div>
+               
+                <span class="city d-block mb-3">About: </span> 
+                <span class="d-block mb-2 text-black-50">{{agent.about}}</span>
+
+
+                <ul class="social list-unstyled list-inline dark-hover">
+                  <li class="list-inline-item">
+                    <a href="{{agent.twiter}}"><span class="icon-twitter"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="{{agent.facebook}}"><span class="icon-facebook"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="{{agent.linkedin}}"><span class="icon-linkedin"></span></a>
+                  </li>
+                  <li class="list-inline-item">
+                    <a href="{{agent.instagram}}"><span class="icon-instagram"></span></a>
+                  </li>
+                </ul>
+
+                <a
+                  href=""
+                  class="btn btn-primary py-2 px-3"
+                  >See details</a
+                >
+                {% if  request.user.is_authenticated %}
+                <a
+                  href="{{agent.pk}}/agentUdt"
+                  class="btn btn-primary py-2 px-3"
+                  >Update</a
+                >
+                <a
+                  href="{{agent.pk}}/delete_agent"
+                  class="btn btn-danger py-2 px-3"
+                  >delete</a
+                >
+                {%endif%}
+              </div>
+            </div>
+          </div>
+          <!-- .item -->
+        </div>
+        {% endfor %} 
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

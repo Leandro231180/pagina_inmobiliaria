@@ -1,0 +1,27 @@
+{% extends 'padre.html' %}
+ {% load static %}
+{% block content %}
+
+<form method="post">{% csrf_token %}
+    {% if object.pic %}
+    <img src="{{object.pic.url }}"  width=800 height=600>
+    {% endif %}  
+ 
+ 
+ 
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+     
+    
+     
+     
+        <input class="btn btn-danger py-2 px-3" type="submit" value="Confirm">
+        
+        <a href="{% url "agentes_list" %}"class="btn btn-success py-2 px-3">Cancelar</a> 
+       
+
+        
+    
+    </form>
+    <br></br>
+
+{% endblock %}

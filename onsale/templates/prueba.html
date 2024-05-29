@@ -1,0 +1,115 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+{% load static %}
+
+    
+    
+   {% comment %} <p>HOLA mundooo</p>
+ <p> prueba foto<p/>
+
+    <img src= "{% static "onsale/images/img_1.jpg" %}"  width=1024  height=768>
+
+    <p> fin prueba foto<p/> {% endcomment %}
+
+  {% comment %} <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table> {% endcomment %}
+
+
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Adress </th>
+        <th scope="col">Area Code</th>
+        <th scope="col">precio</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for casa in ventas %}
+      <tr>
+        <th scope="row">{{casa.id}}</th>
+        <td>{{ casa.lugar }}</td>
+            
+       
+        <td>{{ casa.direccion }}</td> 
+        <td>{{ casa.precio }}</td> 
+      
+        {% if casa.foto %}
+        <td><img src="{{casa.foto.url }}" width=100 height=100></td>
+        <td> <a href="prop/{{casa.pk}}" class="btn btn-primary py-2 px-3">See</a></td> 
+        <td> <a href="{{casa.pk}}/update" class="btn btn-warning py-2 px-3">Update</a></td> 
+        <td> <a href="{{casa.pk}}/delete/" class="btn btn-danger py-2 px-3">Delete</a></td> 
+        {% endif %}
+
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+  <div >
+    {% for casa in ventas %}
+    <div>
+
+    <div class="card h-3 container px-3 px-lg-3 mt-3 bg-warning text-dark" style="width: 18rem;">
+     
+    {% if casa.foto %}
+    <img src="{{casa.foto.url }}" width=250 height=300>
+    {% endif %}
+
+    <p> Direccion: {{ casa.lugar }}</p>
+    <p> Codigo Postal: {{ casa.direccion }}</p>
+    <p> Otro </p>
+    <button>Delete </button>
+    <span class="d-block d-flex align-items-center">
+      
+      <span class="caption icon-bath me-2">2 baths</span>
+    </span>
+    <br>
+    </div>
+    {% endfor %}
+   
+    
+  </div> 
+
+  {{form}}
+    
+</body>
+<script src="{% static '/onsale/js/bootstrap.min.js' %}"></script>
+
+
+{% endblock %}

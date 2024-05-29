@@ -1,0 +1,83 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+{% load django_bootstrap5 %}
+
+    {% load static %}  
+  
+
+    <div class="section">
+      <div class="container">
+        <div class="row justify-content-between">
+          
+          <div class="col-lg-7">
+            <div class="img-property-slide-wrap">
+              <div class="img-property-slide">
+                {% if object.foto %}
+                <img src="{{object.foto.url }}"  width=800 height=600>
+                {% endif %} 
+                {% if object.foto2 %}
+                <img src="{{object.foto2.url }}"  width=800 height=600>
+                {% endif %}
+                {% if object.foto3 %}
+                <img src="{{object.foto3.url }}"  width=800 height=600>
+                {% endif %}
+                
+                  
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <h2 class="heading text-primary">Direccion: {{ object.lugar}} </h2>
+            <h2>Area Code:  {{ object.direccion}} </h2>
+            <p class="meta"> <span class="icon-bath me-2"></span> Bathrooms:  {{ object.baths}} - <span class="icon-bed me-2"></span> Bedrooms: {{ object.beds}}</p>
+            <p class="meta"> U$D:  {{ object.precio}} </p>
+            <p class="text-black-50">
+              {{ object.description}} 
+            </p>
+            {% comment %} <p class="text-black-50">
+              {{ object.description}} 
+            </p> {% endcomment %}
+            <a href="{% url 'allprop' %}" class="btn btn-primary py-2 px-3">Back to List</a>
+            <div class="d-block agent-box p-5">
+              <div class="img mb-4">
+                {% if object.Agente.pic %}
+                <img 
+                  src={{object.Agente.pic.url}}  width=100 height=100>
+                {% endif %} 
+
+                
+              </div>
+              <div class="text">
+                <h3 class="mb-0">{{ object.Agente.name}} {{ object.Agente.lastname}}</h3>
+                
+                <h3 class="mb-0">{{ object.Agente.email}} - {{ object.Agente.phone}}</h3>
+                <div class="meta mb-3">Real Estate Warrior</div>
+                <p>
+                  {{ object.Agente.about}}
+                </p>
+                <ul class="list-unstyled social dark-hover d-flex">
+                  <li class="me-1">
+                    <a href="{{ object.Agente.instagram}}"><span class="icon-instagram"></span></a>
+                  </li>
+                  <li class="me-1">
+                    <a href="{{ object.Agente.twiter}}"><span class="icon-twitter"></span></a>
+                  </li>
+                  <li class="me-1">
+                    <a href="{{ object.Agente.instagram}}"><span class="icon-facebook"></span></a>
+                  </li>
+                  <li class="me-1">
+                    <a href="{{ object.Agente.linkedin}}"><span class="icon-linkedin"></span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+{%endblock%}

@@ -1,0 +1,209 @@
+{% extends 'padre.html' %}
+ {% load static %}
+{% block content %}
+
+
+{% load django_bootstrap5 %}
+
+{% comment %}
+<form method="POST" enctype="multipart/form-data">
+
+  <!-- Security token -->
+  {% csrf_token %}
+  <div class="form-group">
+<table>
+  <!-- Using the formset -->
+  {{ form.as_table }}
+  </div>
+
+  </form>
+</table>
+<input type="submit" class="btn btn-success" value="Submit">
+<a  class="btn btn-danger" href="{% url 'list_sales' %}" > Cancel</a>
+ {% endcomment %}
+
+
+<h1> Formulario para Cargar Propiedades</h1>
+<br> </br>
+<div class="container p-5 my-5">
+<form method="POST" enctype="multipart/form-data">
+  <!-- Security token -->
+  {% csrf_token %}
+  <div class="form-group">
+<table>
+  <!-- Using the formset -->
+
+   {% comment %} {% bootstrap_form form %}  Funciona con el formulario directo con bootstrap {% endcomment %}
+   <div class="form-group">
+    <label for="id_title">Area Code</label>
+    <input class="form-control" type="number" name="direccion" id="id_title" placeholder="Area Code"> 
+    {% comment %} value="{{form.direccion}}"> {% endcomment %}
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="id_title">Adress/Street</label>
+    <input class="form-control" type="text" name="lugar" id="id_title" placeholder="Adress/Street"> 
+    {% comment %} value="{{form.direccion}}"> {% endcomment %}
+  </div>
+  {% comment %} <label >Adress/Street </label>
+  {{form.lugar }} {% endcomment %}
+  
+   {% comment %} <label >Direccion</label>
+  {{form.direccion }} {% endcomment %}
+  <br>
+  <div class="form-group">
+    <label for="id_title">Price</label>
+    <input class="form-control" type="number" name="precio" id="id_title" placeholder="Cost U$D"> 
+    {% comment %} value="{{form.direccion}}"> {% endcomment %}
+  </div>
+  {% comment %} <label >$</label>
+  {{form.precio }} {% endcomment %}
+  <br>
+<div class="row">
+  <div class="col">
+    {% comment %} ACA Esta el problema {% endcomment %}
+  <div class="form-group image-group" id="id_image_group1">     
+    <label >Image</label>
+    
+    <img class="rounded" alt="Preview" width="250" height="200" src="{{form.foto.url}}" id="id_image_display" >
+    {% comment %} {{mi_formulario.image}} {% endcomment %}
+    <br>
+    <input type="file" class="form-control" name="foto" id="id_image_file" accept="foto/*" onchange="readURL(this)">
+  </div>
+  </div>  
+
+  <br>
+<div class="col">
+  <div class="form-group image-group" id="id_image_group2">
+    <label >Image 2</label>
+    
+    <img class="rounded" alt="Preview" width="250" height="200" src="{{form.foto2.url}}" id="id_image_display2" >
+    {% comment %} {{mi_formulario.image}} {% endcomment %}
+    <br>
+    <input type="file" class="form-control" name="foto2" id="id_image_file" accept="foto2/*" onchange="readURL2(this)">
+  </div>
+</div>
+  <br>
+<div class="col">
+  <div class="form-group image-group" id="id_image_group3">
+    <label >Image 3</label>
+    
+    <img class="rounded" alt="Preview" width="250" height="200" src="{{form.foto3.url}}" id="id_image_display3" >
+    {% comment %} {{mi_formulario.image}} {% endcomment %}
+    <br>
+    <input type="file" class="form-control" name="foto3" id="id_image_file" accept="foto3/*" onchange="readURL3(this)">
+  </div>
+</div>
+
+  <br>
+  <div class="form-group">
+    <label for="id_title">Beds</label>
+    <input class="form-control" type="number" name="beds" id="id_title" placeholder="Beds"> 
+  </div>
+  
+  {% comment %} <label >Beds</label>
+  {{form.beds }} {% endcomment %}
+  <br>
+  <div class="form-group">
+    <label for="id_title">Baths</label>
+    <input class="form-control" type="number" name="baths" id="id_title" placeholder="Baths"> 
+  </div>
+
+  {% comment %} <label >Baths</label>
+  {{form.baths }} {% endcomment %}
+  <br>
+  <!-- Body -->
+  <div class="form-group">
+    <label for="description">Property Description</label>
+    <textarea class="form-control" rows="10" type="text" name="description" id="description" placeholder="Talk about..."
+    required> </textarea>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label>Agente</label>
+    <select class="form-control"  name="Agente"  value={{form.Agente }} </select>
+</div>
+  {% comment %} <label >Agente</label>
+  {{form.Agente }} {% endcomment %}
+  </div>
+
+  </form>
+</table>
+<br>
+<input type="submit" class="btn btn-success" value="Submit">
+<a  class="btn btn-danger" href="{% url 'allprop' %}" > Cancel</a>
+</div>
+</div>
+
+{% comment %} <div class="container-sm">
+  <div class="mb-5">
+      <label for="image" class="container-sm">Bootstrap 5 image Upload with Preview</label>
+      <input class="form-control" type="file" id="image" onchange="preview()">
+      <button onclick="clearImage()" class="btn btn-primary mt-3">Click me</button>
+  </div>
+  <img id="frame" src="" class="img-fluid" />
+</div>
+
+<script>
+  function preview() {
+      frame.src = URL.createObjectURL(event.target.files[0]);
+  }
+  function clearImage() {
+      document.getElementById('formFile').value = null;
+      frame.src = "";
+  }
+</script> {% endcomment %}
+
+
+
+<br> </br>
+
+<script type="text/javascript">
+	document.getElementById('id_image_group').onclick = function(event){
+    	document.getElementById('id_image_file').click();
+    };
+
+	function readURL(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+  
+</script>
+
+<script type="text/javascript">
+	document.getElementById('id_image_group2').onclick = function(event){
+    	document.getElementById('id_image_file2').click();
+    };
+
+	function readURL2(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display2')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+</script>
+
+<script type="text/javascript">
+	document.getElementById('id_image_group3').onclick = function(event){
+    	document.getElementById('id_image_file3').click();
+    };
+
+	function readURL3(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display3')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,95 @@
+{% extends 'padre.html' %}
+ {% load static %}
+{% block content %}
+
+<h1> Formulario modificacion de Agentes</h1>
+
+<div class="container-sm">
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+   
+    <div class="form-group">
+        <label for="id_title">Nombre</label>
+        <input class="form-control" type="text" name="name" id="id_title" value="{{form.initial.name}}" placeholder="Name">     
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="id_title">Apellido</label>
+        <input class="form-control" type="text" name="lastname" id="id_title" value="{{form.initial.lastname}}" placeholder="Lastname">     
+      </div>
+      <br>  
+      <div class="form-group">
+        <label for="id_title">Telefono</label>
+        <input class="form-control" type="number" name="phone" id="id_title" value="{{form.initial.phone}}" placeholder="Area Code">     
+      </div>
+      <br>  
+      <div class="form-group">
+        <label for="id_title">E-Mail</label>
+        <input class="form-control" type="text" name="email" id="id_title" value="{{form.initial.email}}" placeholder="Email">     
+      </div>
+      <br> 
+      <div class="form-group image-group" id="id_image_group1">
+        <label >Avatar</label>
+        <img class="rounded" alt="Preview" width="320" height="240" src="{{form.initial.pic.url}}" id="id_image_display" >    
+    <br>
+        <input type="file" class="form-control" name="pic" id="id_image_file" accept="pic/*" onchange="readURL(this)">
+    </div>  
+    <br>
+    <div class="form-group">
+        <label for="description">About</label>
+        <textarea class="form-control" rows="10" type="text" name="about" id="about"  placeholder="Talk about..."
+        required> {{form.initial.about}}</textarea>
+      </div>
+    <br>  
+    <div class="form-group">
+        <label for="id_title">Instagram Url</label>
+        <input class="form-control" type="text" name="instagram" id="id_title" value="{{form.initial.instagram}}" placeholder="Instagram"> 
+      </div>
+      <br>  
+      <div class="form-group">
+          <label for="id_title">Twiter Url</label>
+          <input class="form-control" type="text" name="twiter" id="id_title" value="{{form.initial.twiter}}" placeholder="Instagram"> 
+        </div>
+        <br>  
+        <div class="form-group">
+            <label for="id_title">Facebook Url</label>
+            <input class="form-control" type="text" name=" facebook" id="id_title" value="{{form.initial.facebook}}" placeholder="Instagram"> 
+          </div>
+          <br>  
+          <div class="form-group">
+              <label for="id_title">Linkedin Url</label>
+              <input class="form-control" type="text" name="linkedin" id="id_title" value="{{form.initial.linkedin}}" placeholder="Instagram"> 
+            </div> 
+    <input  class="btn btn-success" type="submit" value="Update">
+    <a class="btn btn-danger" href="/allprop" role="button">Cancel</a>     
+</form>
+</div>
+<br>
+
+
+<script type="text/javascript">
+	document.getElementById('id_image_group').onclick = function(event){
+    	document.getElementById('id_image_file').click();
+    };
+
+	function readURL(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+</script>
+{% endblock %}
+
+
+   
+   
+    
+   
+   
+   
+   
+    
+   
+    

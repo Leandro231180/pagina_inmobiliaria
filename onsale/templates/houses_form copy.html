@@ -1,0 +1,158 @@
+{% extends 'padre.html' %}
+ {% load static %}
+{% block content %}
+
+
+{% load django_bootstrap5 %}
+
+
+
+
+<h1> Formulario para Cargar Propiedades PARA</h1>
+<br> </br>
+<div class="container-sm">
+<form method="POST" enctype="multipart/form-data">
+  <!-- Security token -->
+  {% csrf_token %}
+  <div class="form-group">
+<table>
+  <!-- Using the formset -->
+
+   {% comment %} {% bootstrap_form form %}  Funciona con el formulario directo con bootstrap {% endcomment %}
+   <div class="form-group">
+    <label for="id_title">Area Code</label>
+    <input class="form-control" type="number" name="direccion" id="id_title" placeholder="Area Code"> 
+    
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="id_title">Adress/Street</label>
+    <input class="form-control" type="text" name="lugar" id="id_title" placeholder="Adress/Street"> 
+   
+  </div>
+  
+  <br>
+  <div class="form-group">
+    <label for="id_title">Price</label>
+    <input class="form-control" type="number" name="precio" id="id_title" placeholder="Cost U$D"> 
+    
+  </div>
+  
+  <br>
+<div class="row">
+  <div class="col">
+    
+  <div class="form-group image-group" id="id_image_group1">     
+    <label >Image</label>
+    
+    <img class="rounded" alt="Preview" width="250" height="200" src="{{form.foto.url}}" id="id_image_display" >
+    
+    <br>
+    <input type="file" class="form-control" name="foto" id="id_image_file" accept="foto/*" onchange="readURL(this)">
+  </div>
+  </div>  
+
+  <br>
+  <div class="col">
+    <div class="form-group image-group" id="id_image_group2">
+    <label >Image 2</label>
+    
+    <img class="rounded" alt="Preview" width="250" height="200" src="{{form.foto2.url}}" id="id_image_display2" >
+    
+    <br>
+    <input type="file" class="form-control" name="foto2" id="id_image_file" accept="foto2/*" onchange="readURL2(this)">
+  </div>
+</div>
+  <br>
+<div class="col">
+  <div class="form-group image-group" id="id_image_group3">
+    <label >Image 3</label>
+    
+    <img class="rounded" alt="Preview" width="250" height="200" src="{{form.foto3.url}}" id="id_image_display3" >
+   
+    <br>
+    <input type="file" class="form-control" name="foto3" id="id_image_file" accept="foto3/*" onchange="readURL3(this)">
+  </div>
+</div>
+
+  <br>
+  <div class="form-group">
+    <label for="id_title">Beds</label>
+    <input class="form-control" type="number" name="beds" id="id_title" placeholder="Beds"> 
+  </div>
+  
+ 
+  <br>
+  <div class="form-group">
+    <label for="id_title">Baths</label>
+    <input class="form-control" type="number" name="baths" id="id_title" placeholder="Baths"> 
+  </div>
+
+  
+  <br>
+  <!-- Body -->
+  <div class="form-group">
+    <label for="description">Property Description</label>
+    <textarea class="form-control" rows="10" type="text" name="description" id="description" placeholder="Talk about..."
+    required> </textarea>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label>Agente</label>
+    <select class="form-control"  name="Agente"  value={{form.Agente }} </select>
+</div>
+ 
+  </div>
+
+  </form>
+</table>
+<br>
+<input type="submit" class="btn btn-success" value="Submit">
+<a  class="btn btn-danger" href="{% url 'allprop' %}" > Cancel</a>
+</div>
+</div>
+
+
+
+
+ 
+
+<br> </br>
+
+<script type="text/javascript">
+	document.getElementById('id_image_group').onclick = function(event){
+    	document.getElementById('id_image_file').click();
+    };
+
+	function readURL(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+  function readURL2(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display2')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+  function readURL3(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display3')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+</script>
+
+
+
+
+{% endblock %}
+

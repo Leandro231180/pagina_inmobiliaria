@@ -1,0 +1,52 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+<br></br>
+
+{% for casa in prod_fs %}
+
+{% if casa.pic %}
+  <td><img src="{{casa.pic.url }}" width=300 height=300></td>
+  {% endif %}
+
+<h1>Adress: {{casa.adress}}</h1>
+<h1>Area Code: {{casa.areacode}}</h1>
+<h1>Price: {{casa.price}}</h1>
+<h1>Beds: {{casa.price}}</h1>
+<h1>Baths: {{casa.price}}</h1>
+
+
+
+  {% if casa.pic2 %}
+  <td><img src="{{casa.pic2.url }}" width=300 height=300></td>
+  {% endif %}
+
+  {% if casa.pic3 %}
+  <td><img src="{{casa.pic3.url }}" width=300 height=300></td>
+  {% endif %}
+
+{% endfor %}
+
+{% for casa in prod_fs %}
+<div class="card" style="width: 18rem;">
+    {% if casa.pic %}
+  <td><img src="{{casa.pic.url }}" width=300 height=300></td>
+  {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">Adress: {{casa.adress}} / Area Code: {{casa.areacode}}-Baths: {{casa.price}}</h5>
+      <p class="card-text">Price: {{casa.price}}- Beds: {{casa.price}}-</p>
+      {% comment %} {% if casa.pic2 %}
+  <td><img src="{{casa.pic2.url }}" width=300 height=300></td>
+  {% endif %}
+
+  {% if casa.pic3 %}
+  <td><img src="{{casa.pic3.url }}" width=300 height=300></td>
+  {% endif %} {% endcomment %}
+      <a href="{{casa.pk}}/detail" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  {%endfor%}
+
+
+{%endblock%}

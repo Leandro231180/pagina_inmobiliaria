@@ -1,0 +1,27 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+
+<body>
+    <div class="form-group">
+    <form  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+<table>
+    <div class="form-group">  
+
+{{form.as_table}}
+
+<input type="submit" value="enviar">
+
+    </form>
+    <button class="btn btn-secondary"> POSTEAR </button>
+</table>
+
+<h1> hola </h1>
+
+<button class="btn btn-secondary"> POST </button>
+</div>
+</body>
+
+{% endblock %}

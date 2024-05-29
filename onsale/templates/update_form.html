@@ -1,0 +1,134 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+{% load django_bootstrap5 %}
+<h1> Formulario modificacion de publicaciones</h1>
+<br></br>
+<div class="container-sm">
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {% comment %} {{ form.as_p }} {% endcomment %}
+    {% comment %} <img src="{{object.foto.url}}"alt="" height=200>
+    <img src="{{object.foto2.url}}"alt="" height=200>
+    <img src="{{object.foto3.url}}"alt="" height=200> {% endcomment %}
+    {% comment %} {% bootstrap_form form %}  {% endcomment %}
+
+    <div class="form-group">
+        <label for="id_title">Area Code</label>
+        <input class="form-control" type="number" name="direccion" id="id_title" value="{{form.initial.direccion}}" placeholder="Area Code">     
+      </div>
+      <br>
+    <div class="form-group">
+        <label for="id_title">Adress/Street</label>
+        <input class="form-control" type="text" name="lugar" id="id_title" value="{{form.initial.lugar}}" placeholder="Adress/Street"> 
+      </div>
+    <div class="form-group">
+        <label for="id_title">Price</label>
+        <input class="form-control" type="number" name="precio" id="id_title" value="{{form.initial.precio}}" placeholder="Cost U$D"> 
+        
+    </div>
+    <br>
+<div class="row">
+<div class="col">
+
+    <div class="form-group image-group" id="id_image_group1">
+        <label >Image 1</label>
+        <img class="rounded" alt="Preview" width="320" height="240" src="{{form.initial.foto.url}}" id="id_image_display" >    
+    <br>
+        <input type="file" class="form-control" name="foto" id="id_image_file" accept="foto/*" onchange="readURL(this)">
+    </div>
+</div>
+    <br>
+<div class="col">
+    <div class="form-group image-group" id="id_image_group2">
+        <label >Image 2</label>    
+        <img class="rounded" alt="Preview" width="320" height="240" src="{{form.initial.foto2.url}}" id="id_image_display2" >
+    <br>
+        <input type="file" class="form-control" name="foto2" id="id_image_file" accept="foto2/*" onchange="readURL2(this)">
+    </div>
+</div>
+    <br>
+<div class="col">
+    <div class="form-group image-group" id="id_image_group3">
+        <label >Image 3</label>    
+        <img class="rounded" alt="Preview" width="320" height="240" src="{{form.initial.foto3.url}}" id="id_image_display3" >
+        <br>
+        <input type="file" class="form-control" name="foto3" id="id_image_file" accept="foto3/*" onchange="readURL3(this)">
+        
+    </div>
+     
+</div>
+</div>
+    <br>
+    <div class="form-group">
+      <label for="id_title">Beds</label>
+      <input class="form-control" type="number" name="beds" id="id_title" value="{{form.initial.beds}}" placeholder="Beds"> 
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="id_title">Baths</label>
+        <input class="form-control" type="number" name="baths" id="id_title"  value="{{form.initial.baths}}" placeholder="Baths"> 
+    </div>
+
+    <br>
+    <div class="form-group">
+        <label for="description">Property Description</label>
+        <textarea class="form-control" rows="10" type="text" name="description" id="description"  placeholder="Talk about..."
+        required> {{form.initial.description}}</textarea>
+      </div>
+
+    <br>
+    <div class="form-group">
+        <label>Agente</label>
+        <select class="form-control"  name="Agente"  value={{form.Agente }} </select>
+    </div>
+
+    <br>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    {% comment %} <input  class="btn btn-success" type="submit" value="Update">
+    <a class="btn btn-danger" href="/allprop" role="button">Cancel</a> {% endcomment %}
+    </div>
+    <input  class="btn btn-success" type="submit" value="Update">
+    <a class="btn btn-danger" href="/allprop" role="button">Cancel</a>
+
+    
+
+</form>
+</div> 
+
+ <script type="text/javascript">
+	document.getElementById('id_image_group').onclick = function(event){
+    	document.getElementById('id_image_file').click();
+    };
+
+	function readURL(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+    function readURL2(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display2')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+    function readURL3(input){
+		var reader = new FileReader();
+		reader.onload = function (e) {
+            $('#id_image_display3')
+                .attr('src', e.target.result)
+        };
+		reader.readAsDataURL(input.files[0]);
+	}
+
+</script>
+ 
+
+
+
+<br></br>
+{% endblock %}

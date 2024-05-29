@@ -1,0 +1,53 @@
+{% extends 'padre.html' %}
+
+{% block content %}
+{% load static %}
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1> Calculatora Basica</h1>
+    
+            <form action="result">
+            <input type="number" name="number1" placeholder="Enter first number">
+            <br>
+            <br> 
+            <input type="number" name="number2" placeholder="Enter second number">
+            <br>
+            <br>
+            <button class="btn btn-primary" type="submit" name="add">Add</button>
+            <button class="btn btn-primary" type="submit" name="subtract">Subtract</button>
+            <button class="btn btn-primary" type="submit" name="multiply">Multiply</button>
+            <button class="btn btn-primary" type="submit" name="divide">Divide</button>
+            <button class="btn btn-primary" type="submit" name="potencia">potencia</button>
+            <button class="btn btn-primary" type="submit" name="pitagoras">pitagoras</button>
+            
+            
+        
+            </form>
+            <a class="btn btn-danger" href="{% url 'calculadora' %}">Reset</button></a>
+        </div>
+      <div class="col">
+        <h1>The result is: </h1>
+        <h1>{{ans}}</h1>
+      </div>
+    </div>
+
+</div>
+
+
+    
+    <style>
+      .center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid #a5addb;
+        padding: 10px;
+      }
+    </style>
+
+    
+
+  {% endblock %}
